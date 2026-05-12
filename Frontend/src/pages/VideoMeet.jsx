@@ -19,7 +19,9 @@ import meetingImg from "../assets/meetingImg2.png";
 import HistoryIcon from "@mui/icons-material/History";
 import { Navigate, useNavigate } from "react-router-dom";
 
-const server_url = "http://localhost:3000";
+import server from "../environment";
+
+const server_url = server;
 
 let connections = {};
 
