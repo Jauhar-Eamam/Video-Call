@@ -30,7 +30,7 @@ A modern, real-time video calling application built with Node.js, React, and Soc
 - **User Authentication**: Secure user registration and login with JWT tokens
 - **Room Management**: Join specific call rooms using unique paths
 - **User Presence**: Real-time notifications when users join or leave calls
-- **Call History**: Track user activity and time spent in calls
+- **Call History**: Track user activity 
 
 ### Security Features
 - JWT-based authentication and authorization
@@ -63,7 +63,6 @@ A modern, real-time video calling application built with Node.js, React, and Soc
 - **Express.js 5** - Web framework
 - **Socket.IO 4** - Real-time bidirectional communication
 - **MongoDB** - NoSQL database
-- **Mongoose 9** - MongoDB ODM
 - **JWT (jsonwebtoken)** - Token-based authentication
 - **bcryptjs** - Password hashing
 - **Nodemon** - Development server with auto-reload
@@ -380,15 +379,15 @@ Fired when a user leaves the call
 └────────┬────────┘                    └────────┬────────┘
          │                                      │
          │ HTTP/REST                            │
-         ├─────────────────────────────────────┤
+         ├──────────────────────────────────────┤
          │                                      │
          │ Socket.IO (WebSocket)                │
          │  ├─ join-call                        │
-         │  ├─ signal (WebRTC SDP/ICE)         │
-         │  ├─ chat-message                    │
-         │  └─ user-joined/user-left          │
+         │  ├─ signal (WebRTC SDP/ICE)          │
+         │  ├─ chat-message                     │
+         │  └─ user-joined/user-left            │
          │                                      │
-         └─────────────────────────────────────┘
+         └──────────────────────────────────────┘
                         ↓
               ┌──────────────────┐
               │  Express Server  │
