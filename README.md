@@ -1,6 +1,8 @@
 # Video-Call Platform
 
-A modern, real-time video calling application built with Node.js, React, and Socket.IO. This project enables users to connect with others through peer-to-peer video communication with integrated messaging capabilities.
+A modern, real-time video calling application built with Node.js, React, and Socket.IO. This project enables users to connect with others through peer-to-peer video communication with integrated messaging.
+
+🌐 **[Live Demo](https://video-call-frontend-dzeh.onrender.com/)**
 
 ---
 
@@ -533,5 +535,5 @@ For issues, questions, or suggestions:
 
 ---
 
-**Last Updated:** May 15, 2026
+**Last Updated:** May 16, 2026
 **Version:** 1.0.0
