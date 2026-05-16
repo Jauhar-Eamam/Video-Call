@@ -43,7 +43,6 @@
 
 
 
-/* new  bottom */
 .chatRoom {
   position: absolute;
   top: 50px;
@@ -67,16 +66,13 @@
   text-align: center;
 }
 
-/* Lobby Styles */
 .lobbyContainer {
   display: flex;
   flex-direction: column;
-  /* height: 100vh; */
   width: 100%;
   height: 100%;
   background-color: #fff;
-  /* gap: 20px; */
-  /* padding: 30px; */
+
 }
 
 .lobbyContainer > div:nth-child(2) {
@@ -118,8 +114,6 @@
 }
 
 .lobbyTitle {
-  /* font-size: 1.3rem;
-    font-weight: 600; */
   margin-bottom: 0.4rem;
 }
 
@@ -149,22 +143,6 @@
   background: transparent;
   width: 100%;
 }
-
-/* .lobbyVideo {
-    margin-top: 30px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-} */
-
-/* .lobbyVideo video {
-    width: 400px;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 15px;
-} */
-
-/* Chat Input Styles */
 
 .inputField {
   display: flex;
@@ -235,10 +213,6 @@
 }
 
 
-/* =========================
-   TABLET VIEW
-========================= */
-
 @media screen and (max-width: 1024px) {
   .lobbyContainer > div:nth-child(2) {
     gap: 4rem;
@@ -263,13 +237,7 @@
   }
 }
 
-/* =========================
-   MOBILE VIEW
-========================= */
-
 @media screen and (max-width: 768px) {
-
-  /* Main video section */
 
   .meetVideoContainer {
     min-height: 100vh;
@@ -299,7 +267,6 @@
     border-radius: 15px;
   }
 
-  /* Buttons */
 
   .buttonContainer {
     bottom: 1vh;
@@ -310,7 +277,6 @@
     font-size: 2rem;
   }
 
-  /* Chat Room */
 
   .chatRoom {
     width: 100%;
@@ -326,8 +292,6 @@
   .chattingDispaly {
     height: calc(100vh - 140px);
   }
-
-  /* Lobby */
 
   .lobbyContainer > div:nth-child(2) {
     flex-direction: column;
@@ -356,14 +320,10 @@
     align-items: center;
   }
 
-  /* Buttons */
-
   .connectButton {
     width: 100% !important;
     margin-left: 0 !important;
   }
-
-  /* Input */
 
   .inputField {
     padding: 0 10px;
