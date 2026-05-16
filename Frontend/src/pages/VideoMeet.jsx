@@ -709,7 +709,7 @@ export default function VideoMeetComponent() {
                     }
                   }}
                   autoPlay
-                  muted
+                  
                 ></video>
               </div>
             ))}
