@@ -9,18 +9,22 @@ import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import BGImg from "../assets/authImg.jpg";
-import { AuthContext } from "../contexts/AuthContext";
 import Snackbar from "@mui/material/Snackbar";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
 
-import { useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-// TODO remove, this demo shouldn't need to reset the theme.
+import { useSearchParams, useNavigate } from "react-router-dom";
+
+import BGImg from "../assets/authImg.jpg";
+
+import { AuthContext } from "../contexts/AuthContext";
 
 const defaultTheme = createTheme();
 
@@ -28,6 +32,7 @@ export default function Authentication() {
   const [fullname, setfullname] = React.useState("");
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
   const [err, setErr] = React.useState("");
   const [message, setMessage] = React.useState("");
 
@@ -47,15 +52,19 @@ export default function Authentication() {
     try {
       setErr("");
       setMessage("");
+
       if (formState === 0) {
         let result = await handleLogin(username, password);
         setMessage(result);
         setOpen(true);
       }
+
       if (formState === 1) {
         let result = await handleRegister(fullname, username, password);
+
         setMessage(result);
         setOpen(true);
+
         setFormState(0);
       }
 
@@ -64,20 +73,23 @@ export default function Authentication() {
       setPassword("");
     } catch (err) {
       console.log(err);
-      let message = err.response.data.message;
+
+      let message = err?.response?.data?.message || "Something went wrong";
+
       setErr(message);
     }
   };
 
-  let clearInput = () => {
+  const clearInput = () => {
     setfullname("");
     setUsername("");
     setPassword("");
+    setShowPassword(false);
+    setErr("");
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
   };
 
   return (
@@ -85,19 +97,20 @@ export default function Authentication() {
       <Grid
         container
         component="main"
-        direction="row"
-        wrap="nowrap"
         sx={{
-          height: "100vh",
+          minHeight: "100vh",
+          flexWrap: "nowrap",
         }}
       >
         <CssBaseline />
+
         <Grid
           item
           xs={false}
-          sm={4}
+          sm={5}
           md={7}
           sx={{
+            display: { xs: "none", sm: "block" },
             position: "relative",
           }}
         >
@@ -109,85 +122,111 @@ export default function Authentication() {
               width: "100%",
               height: "100vh",
               objectFit: "cover",
-              display: "block",
             }}
           />
+
           <Box
             sx={{
               position: "absolute",
-              top: "10px",
-              left: "10px",
-              zIndex: 2,
-              color: "white",
+              top: 20,
+              left: 20,
+              zIndex: 10,
             }}
           >
             <Typography
               variant="h4"
               sx={{
+                color: "white",
                 fontWeight: "bold",
-              }} onClick={() => navigate('/')}
+                cursor: "pointer",
+              }}
+              onClick={() => navigate("/")}
             >
               Apna Video Call
             </Typography>
           </Box>
         </Grid>
+
         <Grid
           item
           xs={12}
-          sm={8}
+          sm={7}
           md={5}
           component={Paper}
           elevation={6}
           square
           sx={{
-            width: "50%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
           }}
         >
           <Box
             sx={{
-              my: 8,
-              mx: 4,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
+              width: "100%",
+              maxWidth: 400,
+              px: 4,
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Avatar
+                sx={{
+                  m: 1,
+                  bgcolor: "secondary.main",
+                }}
+              >
+                <LockOutlinedIcon />
+              </Avatar>
 
-            <div>
-              <Button
-                variant={formState === 0 ? "contained" : ""}
-                onClick={() => {
-                  clearInput();
-                  setFormState(0);
+              <Typography component="h1" variant="h5">
+                {formState === 0 ? "Sign In" : "Sign Up"}
+              </Typography>
+
+              <Box
+                sx={{
+                  mt: 2,
+                  display: "flex",
+                  gap: 2,
                 }}
               >
-                Sign In
-              </Button>
-              <Button
-                variant={formState === 1 ? "contained" : ""}
-                onClick={() => {
-                  clearInput();
-                  setFormState(1);
-                }}
-              >
-                Sign UP
-              </Button>
-            </div>
+                <Button
+                  variant={formState === 0 ? "contained" : "outlined"}
+                  onClick={() => {
+                    clearInput();
+                    setFormState(0);
+                  }}
+                >
+                  Sign In
+                </Button>
+
+                <Button
+                  variant={formState === 1 ? "contained" : "outlined"}
+                  onClick={() => {
+                    clearInput();
+                    setFormState(1);
+                  }}
+                >
+                  Sign Up
+                </Button>
+              </Box>
+            </Box>
 
             <Box
               component="form"
               noValidate
               onSubmit={handleSubmit}
               sx={{
-                mt: 1,
-                width: "100%",
-                maxWidth: "400px",
+                mt: 3,
               }}
             >
-              {formState === 1 ? (
+              {formState === 1 && (
                 <TextField
                   margin="normal"
                   required
@@ -199,8 +238,6 @@ export default function Authentication() {
                   value={fullname}
                   onChange={(e) => setfullname(e.target.value)}
                 />
-              ) : (
-                <></>
               )}
 
               <TextField
@@ -210,40 +247,70 @@ export default function Authentication() {
                 id="username"
                 label="Username"
                 name="username"
-                autoFocus
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
+
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 name="password"
                 label="Password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                slotProps={{
+                  input: {
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          onClick={() => setShowPassword((prev) => !prev)}
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  },
+                }}
               />
 
-              <p style={{ color: "red" }}>{err}</p>
+              {/* ERROR */}
+              {err && (
+                <Typography
+                  sx={{
+                    color: "red",
+                    mt: 1,
+                    fontSize: "14px",
+                  }}
+                >
+                  {err}
+                </Typography>
+              )}
 
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
+
               <Button
                 type="button"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, mb: 2 }}
+                sx={{
+                  mt: 2,
+                  mb: 2,
+                  py: 1.2,
+                }}
                 onClick={handleAuth}
               >
-                {formState === 0 ? <p>Sign In</p> : <p>Sign Up</p>}
+                {formState === 0 ? "Sign In" : "Sign Up"}
               </Button>
+
+              {/* LINKS */}
               <Grid
                 container
-                className="authPagecontainer"
                 sx={{
                   whiteSpace: "nowrap",
                 }}
@@ -253,23 +320,23 @@ export default function Authentication() {
                     Forgot password?
                   </Link>
                 </Grid>
+
                 <Grid item>
-                  {" "}
                   {formState === 0 ? (
                     <Link
                       href="#"
-                      onClick={() => setFormState(1)}
                       variant="body2"
+                      onClick={() => setFormState(1)}
                     >
-                      {"Don't have an account? Sign Up"}
+                      Don't have an account? Sign Up
                     </Link>
                   ) : (
                     <Link
                       href="#"
-                      onClick={() => setFormState(0)}
                       variant="body2"
+                      onClick={() => setFormState(0)}
                     >
-                      {"I have an account? Sign In"}
+                      Already have an account? Sign In
                     </Link>
                   )}
                 </Grid>
@@ -278,6 +345,7 @@ export default function Authentication() {
           </Box>
         </Grid>
       </Grid>
+
 
       <Snackbar
         open={open}

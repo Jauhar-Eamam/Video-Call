@@ -41,15 +41,7 @@
   font-weight: 700;
 }
 
-/* .chatRoom {
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    background-color: #fff;
-    height: 80vh;
-    width: 27vw;
-    border-radius: 20px 0px 0px 20px;
-} */
+
 
 /* new  bottom */
 .chatRoom {
@@ -240,4 +232,146 @@
 
 .chattingDispaly p {
   word-break: break-word;
+}
+
+
+/* =========================
+   TABLET VIEW
+========================= */
+
+@media screen and (max-width: 1024px) {
+  .lobbyContainer > div:nth-child(2) {
+    gap: 4rem;
+    padding: 20px;
+  }
+
+  .heroImg img {
+    width: 300px;
+  }
+
+  .confrenceView > div > video {
+    width: 45vw;
+  }
+
+  .chatRoom {
+    width: 300px;
+  }
+
+  .meetUserVideo {
+    height: 20vh;
+    left: 2vh;
+  }
+}
+
+/* =========================
+   MOBILE VIEW
+========================= */
+
+@media screen and (max-width: 768px) {
+
+  /* Main video section */
+
+  .meetVideoContainer {
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .confrenceView {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 100px;
+  }
+
+  .confrenceView > div > video {
+    width: 95vw;
+    min-width: unset;
+  }
+
+  /* Self video */
+
+  .meetUserVideo {
+    width: 120px;
+    height: auto;
+
+    bottom: 12vh;
+    left: 10px;
+
+    border-radius: 15px;
+  }
+
+  /* Buttons */
+
+  .buttonContainer {
+    bottom: 1vh;
+    padding-inline: 10px;
+  }
+
+  .buttonContainer svg {
+    font-size: 2rem;
+  }
+
+  /* Chat Room */
+
+  .chatRoom {
+    width: 100%;
+    height: 100vh;
+
+    top: 0;
+    right: 0;
+
+    border-radius: 0;
+    z-index: 1000;
+  }
+
+  .chattingDispaly {
+    height: calc(100vh - 140px);
+  }
+
+  /* Lobby */
+
+  .lobbyContainer > div:nth-child(2) {
+    flex-direction: column;
+    gap: 2rem;
+
+    margin-top: 1rem;
+    padding: 20px;
+  }
+
+  .textContent {
+    text-align: center;
+  }
+
+  .heroImg img {
+    width: 90%;
+    max-width: 320px;
+  }
+
+  .hero1Img img {
+    width: 100%;
+  }
+
+  .navBar {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* Buttons */
+
+  .connectButton {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  /* Input */
+
+  .inputField {
+    padding: 0 10px;
+    bottom: 10px;
+  }
+
+  .sendMessageIcon {
+    width: 40px;
+    height: 40px;
+  }
 }
