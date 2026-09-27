@@ -536,4 +536,4 @@ For issues, questions, or suggestions:
 ---
 
 **Last Updated:** May 16, 2026
-**Version:** 1.0.0
+**Version:** 1.0.1
